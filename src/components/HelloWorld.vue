@@ -1,40 +1,43 @@
-<script setup>
-import { ref } from 'vue'
+<script>
+import axios from 'axios';
 
-defineProps({
-  msg: String
-})
+export default {
+  data() {
+    return {
+      aya: 0,
+      juz: 0,
+      verse_key: 0,
+      text_fr: '',
+      notes: {},
+    };
+  },
 
-const count = ref(0)
+  mounted() {
+    this.getAya();
+  },
+
+  methods: {
+    getAya() {
+      const vm = this;
+      // Optionally the request above could also be done as
+      axios
+        .get('https://cya.modji.xyz/items/quran_ayat/824')
+        .then(function (response) {
+          const rez = response.data.data;
+          vm.aya = rez.aya;
+          vm.juz = rez.juz;
+          vm.verse_key = rez.verse_key;
+          vm.text_fr = rez.text_fr;
+          vm.notes = rez.notes;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div>Aya: {{ aya }} | Juz: {{ juz }} | Verse Key: {{ verse_key }}</div>
 </template>
-
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>
