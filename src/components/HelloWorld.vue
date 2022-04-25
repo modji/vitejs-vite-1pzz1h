@@ -54,7 +54,7 @@ export default {
   <div>
     <span v-html="text_fr"></span>
     <o-tooltip :label="$sanitize(label)" multiline position="top">
-      <o-button> #{{ num }}</o-button>
+      <o-button> #{{ num }} - Hover Tooltip</o-button>
     </o-tooltip>
     <o-button @click="showNote = !showNote" variant="warning">
       #{{ num }} - Click me to toggle</o-button
