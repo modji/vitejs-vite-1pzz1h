@@ -53,13 +53,12 @@ export default {
   <div>Aya: {{ aya }} | Juz: {{ juz }} | Verse Key: {{ verse_key }}</div>
   <div>
     <span v-html="text_fr"></span>
-    <o-tooltip :label="$sanitize(label)" multiline position="bottom">
+    <o-tooltip :label="$sanitize(label)" multiline position="top">
       <o-button> #{{ num }}</o-button>
     </o-tooltip>
-    <br /><br />
-    <o-button @click="showNote = !showNote">
+    <o-button @click="showNote = !showNote" variant="warning">
       #{{ num }} - Click me to toggle</o-button
     >
-    <p v-html="$sanitize(label)" v-if="showNote"></p>
+    <p v-html="$sanitize(label)" v-show="showNote"></p>
   </div>
 </template>
