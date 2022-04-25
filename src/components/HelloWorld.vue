@@ -11,7 +11,14 @@ export default {
       notes: {},
       label: '',
       num: '',
+      showNote: false,
     };
+  },
+
+  computed: {
+    cleanLabel() {
+      return this.$sanitize(this.label);
+    },
   },
 
   mounted() {
@@ -45,9 +52,14 @@ export default {
 <template>
   <div>Aya: {{ aya }} | Juz: {{ juz }} | Verse Key: {{ verse_key }}</div>
   <div>
-    <div v-html="text_fr"></div>
-    <o-tooltip :label="label" multiline>
-      <o-button> {{ num }}</o-button>
+    <span v-html="text_fr"></span>
+    <o-tooltip :label="$sanitize(label)" multiline position="bottom">
+      <o-button> #{{ num }}</o-button>
     </o-tooltip>
+    <br /><br />
+    <o-button @click="showNote = !showNote">
+      #{{ num }} - Click me to toggle</o-button
+    >
+    <p v-html="$sanitize(label)" v-if="showNote"></p>
   </div>
 </template>
