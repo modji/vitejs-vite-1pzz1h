@@ -52,8 +52,8 @@ export default {
 <template>
   <div>Aya: {{ aya }} | Juz: {{ juz }} | Verse Key: {{ verse_key }}</div>
   <div>
-    <span v-html="text_fr"></span>
-    <o-tooltip :label="$sanitize(label)" multiline position="top">
+    <span v-html="$sanitize(text_fr)"></span>
+    <o-tooltip :label="$sanitize(label)" multiline position="bottom">
       <o-button> #{{ num }} - Hover Tooltip</o-button>
     </o-tooltip>
     <o-button @click="showNote = !showNote" variant="warning">
