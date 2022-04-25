@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@oruga-ui/oruga-next": "^0.5.5",
     "axios": "^0.26.1",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-3-sanitize": "^0.1.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",

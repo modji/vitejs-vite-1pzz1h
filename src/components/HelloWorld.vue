@@ -9,6 +9,8 @@ export default {
       verse_key: 0,
       text_fr: '',
       notes: {},
+      label: '',
+      num: '',
     };
   },
 
@@ -29,6 +31,8 @@ export default {
           vm.verse_key = rez.verse_key;
           vm.text_fr = rez.text_fr;
           vm.notes = rez.notes;
+          vm.label = rez.notes[0]['text'];
+          vm.num = rez.notes[0]['numero'];
         })
         .catch(function (error) {
           console.log(error);
@@ -40,4 +44,10 @@ export default {
 
 <template>
   <div>Aya: {{ aya }} | Juz: {{ juz }} | Verse Key: {{ verse_key }}</div>
+  <div>
+    <div v-html="text_fr"></div>
+    <o-tooltip :label="label" multiline>
+      <o-button> {{ num }}</o-button>
+    </o-tooltip>
+  </div>
 </template>
